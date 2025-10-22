@@ -3,8 +3,8 @@
   <head>
     <meta charset="UTF-8" />
     <title>Bulk FMCG Store</title>
-    <link rel="icon" href="favicon.ico" type="image/x-icon" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" href="favicon.ico" type="image/x-icon" />
     <script src="https://cdn.tailwindcss.com"></script>
     <script defer src="products.js"></script>
     <script defer src="app.js"></script>
@@ -17,8 +17,24 @@
       <p class="text-sm text-gray-600 mt-1">Fast-moving household deals. Limited stock. Act fast!</p>
     </header>
 
-    <!-- 🧃 Product Grid -->
-    <section id="product-grid" class="flex overflow-x-auto space-x-4 pb-4"></section>
+    <!-- 🧭 Main Layout -->
+    <main class="flex gap-6">
+      <!-- 🗂️ Category Panel -->
+      <aside class="w-64 bg-white shadow rounded-lg p-4 h-fit sticky top-6">
+        <h2 class="text-lg font-bold mb-4">Categories</h2>
+        <ul class="space-y-2 text-sm text-gray-700">
+          <li><button onclick="filterProducts('All')" class="hover:text-orange-600">All Products</button></li>
+          <li><button onclick="filterProducts('Hygiene')" class="hover:text-orange-600">Hygiene</button></li>
+          <li><button onclick="filterProducts('Food')" class="hover:text-orange-600">Food & Snacks</button></li>
+          <li><button onclick="filterProducts('Drinks')" class="hover:text-orange-600">Drinks</button></li>
+          <li><button onclick="filterProducts('Cosmetics')" class="hover:text-orange-600">Cosmetics</button></li>
+          <li><button onclick="filterProducts('Cleaning')" class="hover:text-orange-600">Cleaning</button></li>
+        </ul>
+      </aside>
+
+      <!-- 🧃 Product Grid -->
+      <section id="product-grid" class="flex flex-wrap gap-4"></section>
+    </main>
 
     <!-- 🧺 Cart Panel -->
     <div
