@@ -1,7 +1,7 @@
 // 🎨 Tailwind ClassMap for consistent styling
 const classMap = {
   card: "min-w-[250px] bg-white rounded-xl shadow-md p-4 hover:shadow-lg hover:scale-[1.03] transition-all duration-300 ease-in-out",
-  badge: "absolute top-2 left-2 bg-red-500 text-white text-xs font-semibold px-2 py-1 rounded shadow z-10",
+  badge: "bg-red-500 text-white text-xs font-semibold px-2 py-1 rounded shadow z-10 flex items-center gap-1",
   image: "w-full h-40 object-cover rounded",
   title: "mt-2 text-lg font-semibold leading-snug",
   price: "text-green-700 font-bold text-base",
@@ -19,6 +19,17 @@ const sectionHeader = document.getElementById("section-header");
 function toggleCategoryPanel() {
   const panel = document.getElementById("category-panel");
   panel.classList.toggle("hidden");
+}
+
+function getBadgeIcon(tag) {
+  const icons = {
+    "Limited Stock": "⏳",
+    "Flash Deal": "⚡",
+    "Best Seller": "🔥",
+    "New Arrival": "🆕",
+    "Deal of the Day": "💥",
+  };
+  return icons[tag] || "🏷️";
 }
 
 // 🧩 Create product card
