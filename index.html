@@ -1,35 +1,66 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <link rel="icon" href="favicon.ico" type="images/x-icon" />
-
     <meta charset="UTF-8" />
     <title>Bulk FMCG Store</title>
+    <link rel="icon" href="favicon.ico" type="image/x-icon" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <script src="https://cdn.tailwindcss.com"></script>
     <script defer src="products.js"></script>
     <script defer src="app.js"></script>
   </head>
+
   <body class="p-6 bg-gray-50 font-sans">
-    <h1 class="text-3xl font-bold text-center mb-6">🛒 Bulk Buy Essentials</h1>
-    <div id="product-grid" class="flex overflow-x-auto space-x-4 pb-4"></div>
-    <div id="cart" class="fixed bottom-4 right-4 bg-white shadow-lg rounded-full px-6 py-3">
-      🧺 Cart: 0 items
+    <!-- 🛍️ Header -->
+    <header class="text-center mb-6">
+      <h1 class="text-3xl font-bold">🛒 Bulk Buy Essentials</h1>
+      <p class="text-sm text-gray-600 mt-1">Fast-moving household deals. Limited stock. Act fast!</p>
+    </header>
+
+    <!-- 🧃 Product Grid -->
+    <section id="product-grid" class="flex overflow-x-auto space-x-4 pb-4"></section>
+
+    <!-- 🧺 Cart Panel -->
+    <div
+      id="cart"
+      class="fixed bottom-4 right-4 bg-white shadow-lg rounded-full px-6 py-3 flex items-center space-x-4 z-40"
+    >
+      <span>🧺 Cart: <span id="cart-count">0</span> items</span>
+      <button
+        onclick="openModal()"
+        class="bg-orange-600 text-white px-3 py-1 rounded hover:bg-orange-700 transition-colors"
+      >
+        Checkout
+      </button>
     </div>
 
-    <div id="checkout-modal" class="hidden fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
-    <div class="bg-white rounded-lg shadow-xl p-6 w-[90%] max-w-md">
-    <h2 class="text-xl font-bold mb-4">🧾 Order Summary</h2>
-    <ul id="checkout-items" class="space-y-2 max-h-60 overflow-y-auto"></ul>
-    <div class="mt-4 border-t pt-2 flex justify-between">
-      <span class="font-bold">Total:</span>
-      <span id="checkout-total" class="text-orange-600 font-bold">₹0</span>
+    <!-- 🧾 Checkout Modal -->
+    <div
+      id="checkout-modal"
+      class="hidden fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50"
+    >
+      <div class="bg-white rounded-lg shadow-xl p-6 w-[90%] max-w-md">
+        <h2 class="text-xl font-bold mb-4">🧾 Order Summary</h2>
+        <ul id="checkout-items" class="space-y-2 max-h-60 overflow-y-auto"></ul>
+        <div class="mt-4 border-t pt-2 flex justify-between">
+          <span class="font-bold">Total:</span>
+          <span id="checkout-total" class="text-orange-600 font-bold">₹0</span>
+        </div>
+        <div class="mt-6 flex justify-end space-x-2">
+          <button
+            onclick="closeModal()"
+            class="px-4 py-2 bg-gray-300 rounded hover:bg-gray-400"
+          >
+            Cancel
+          </button>
+          <button
+            onclick="confirmOrder()"
+            class="px-4 py-2 bg-orange-600 text-white rounded hover:bg-orange-700"
+          >
+            Confirm
+          </button>
+        </div>
+      </div>
     </div>
-    <div class="mt-6 flex justify-end space-x-2">
-      <button onclick="closeModal()" class="px-4 py-2 bg-gray-300 rounded hover:bg-gray-400">Cancel</button>
-      <button onclick="confirmOrder()" class="px-4 py-2 bg-orange-600 text-white rounded hover:bg-orange-700">Confirm</button>
-    </div>
-  </div>
-</div>
-
   </body>
 </html>
