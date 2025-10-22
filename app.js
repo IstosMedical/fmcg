@@ -31,17 +31,19 @@ function createProductCard(product) {
   card.className = classMap.card;
 
   const badge = product.tag
-    ? `<div class="${classMap.badge}">${product.tag}</div>`
+    ? `<div class="${classMap.badge} static mt-2">${product.tag}</div>`
     : "";
 
   card.innerHTML = `
-    <div class="relative">
-      ${badge}
+    <div>
       <img src="${product.image}" alt="${product.name}" class="${classMap.image}" />
     </div>
     <h3 class="${classMap.title}">${product.name}</h3>
     <p class="${classMap.price}">₹${product.price}</p>
-    <button class="${classMap.button}">Add to Cart</button>
+    <div class="flex items-center justify-between mt-2">
+      <button class="${classMap.button}">Add to Cart</button>
+      ${badge}
+    </div>
   `;
 
   const button = card.querySelector("button");
@@ -53,6 +55,7 @@ function createProductCard(product) {
 
   return card;
 }
+
 
 // 🧺 Update cart display
 function updateCartDisplay() {
