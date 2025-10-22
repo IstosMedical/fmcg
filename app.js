@@ -1,12 +1,10 @@
-
 let cartCount = 0;
 let cartItems = [];
 
-
 const grid = document.getElementById("product-grid");
-const cart = document.getElementById("cart");
+const cartCountDisplay = document.getElementById("cart-count");
 
-// Utility: Create product card
+// 🧩 Create product card
 function createProductCard(product) {
   const card = document.createElement("div");
   card.className =
@@ -31,18 +29,19 @@ function createProductCard(product) {
   const button = card.querySelector("button");
   button.addEventListener("click", () => {
     cartCount++;
+    cartItems.push(product);
     updateCartDisplay();
   });
 
   return card;
 }
 
-// Utility: Update cart display
+// 🧺 Update cart display
 function updateCartDisplay() {
-  cart.textContent = `🧺 Cart: ${cartCount} item${cartCount !== 1 ? "s" : ""}`;
+  cartCountDisplay.textContent = cartCount;
 }
 
-// Render all products
+// 🛒 Render all products
 function renderProducts() {
   products.forEach((product) => {
     const card = createProductCard(product);
@@ -50,6 +49,41 @@ function renderProducts() {
   });
 }
 
-// Initialize
+// 🧾 Open checkout modal
+function openModal() {
+  const modal = document.getElementById("checkout-modal");
+  const itemsList = document.getElementById("checkout-items");
+  const totalDisplay = document.getElementById("checkout-total");
+
+  itemsList.innerHTML = "";
+  let total = 0;
+
+  cartItems.forEach((item) => {
+    const li = document.createElement("li");
+    li.className = "flex justify-between";
+    li.innerHTML = `<span>${item.name}</span><span class="text-green-700 font-semibold">₹${item.price}</span>`;
+    itemsList.appendChild(li);
+    total += item.price;
+  });
+
+  totalDisplay.textContent = `₹${total}`;
+  modal.classList.remove("hidden");
+}
+
+// ❌ Close modal
+function closeModal() {
+  document.getElementById("checkout-modal").classList.add("hidden");
+}
+
+// ✅ Confirm order
+function confirmOrder() {
+  alert("Order placed!");
+  cartItems = [];
+  cartCount = 0;
+  updateCartDisplay();
+  closeModal();
+}
+
+// 🚀 Initialize
 renderProducts();
 updateCartDisplay();
