@@ -27,19 +27,17 @@ function createProductCard(product) {
   card.className = classMap.card;
 
   const badge = product.tag
-    ? `<span class="${classMap.badge}">${product.tag}</span>`
+    ? `<div class="absolute top-2 left-2 ${classMap.badge}">${product.tag}</div>`
     : "";
 
   card.innerHTML = `
-    <div>
+    <div class="relative">
+      ${badge}
       <img src="${product.image}" alt="${product.name}" class="${classMap.image}" />
     </div>
     <h3 class="${classMap.title}">${product.name}</h3>
     <p class="${classMap.price}">₹${product.price}</p>
-    <div class="flex items-center justify-between mt-2">
-      <button class="${classMap.button}">Add to Cart</button>
-      ${badge}
-    </div>
+    <button class="${classMap.button} mt-2">Add to Cart</button>
   `;
 
   const button = card.querySelector("button");
