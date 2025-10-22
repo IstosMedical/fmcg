@@ -4,6 +4,12 @@ let cartItems = [];
 const grid = document.getElementById("product-grid");
 const cartCountDisplay = document.getElementById("cart-count");
 
+// 🧭 Toggle category panel on mobile
+function toggleCategoryPanel() {
+  const panel = document.getElementById("category-panel");
+  panel.classList.toggle("hidden");
+}
+
 // 🧩 Create product card
 function createProductCard(product) {
   const card = document.createElement("div");
@@ -21,7 +27,7 @@ function createProductCard(product) {
     </div>
     <h3 class="mt-2 text-lg font-semibold">${product.name}</h3>
     <p class="text-green-700 font-bold">₹${product.price}</p>
-    <button class="mt-2 bg-orange-600 text-white px-4 py-2 rounded hover:bg-orange-700">
+    <button class="mt-2 bg-orange-600 text-white px-4 py-2 rounded hover:bg-orange-700 transition-colors">
       Add to Cart
     </button>
   `;
@@ -41,9 +47,14 @@ function updateCartDisplay() {
   cartCountDisplay.textContent = cartCount;
 }
 
-// 🛒 Render all products
-function renderProducts() {
-  products.forEach((product) => {
+// 🛒 Render products by category
+function filterProducts(category) {
+  grid.innerHTML = "";
+  const filtered =
+    category === "All"
+      ? products
+      : products.filter((p) => p.category === category);
+  filtered.forEach((product) => {
     const card = createProductCard(product);
     grid.appendChild(card);
   });
@@ -85,5 +96,5 @@ function confirmOrder() {
 }
 
 // 🚀 Initialize
-renderProducts();
+filterProducts("All");
 updateCartDisplay();
