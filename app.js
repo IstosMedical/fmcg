@@ -37,9 +37,10 @@ function createProductCard(product) {
   const card = document.createElement("div");
   card.className = classMap.card;
 
-  const badge = product.tag
-    ? `<span class="${classMap.badge}">${product.tag}</span>`
-    : "";
+const badge = product.tag
+  ? `<div class="absolute top-2 left-2 ${classMap.badge}">${getBadgeIcon(product.tag)} ${product.tag}</div>`
+  : "";
+
 
   card.innerHTML = `
     <div>
