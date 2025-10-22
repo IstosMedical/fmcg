@@ -21,6 +21,17 @@ function toggleCategoryPanel() {
   panel.classList.toggle("hidden");
 }
 
+function getBadgeIcon(tag) {
+  const icons = {
+    "Limited Stock": "⏳",
+    "Flash Deal": "⚡",
+    "Best Seller": "🔥",
+    "New Arrival": "🆕",
+    "Deal of the Day": "💥",
+  };
+  return icons[tag] || "🏷️";
+}
+
 // 🧩 Create product card
 function createProductCard(product) {
   const card = document.createElement("div");
