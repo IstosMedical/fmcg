@@ -5,12 +5,7 @@ const classMap = {
   image: "w-full h-40 object-cover rounded",
   title: "mt-2 text-lg font-semibold leading-snug",
   price: "text-green-700 font-bold text-base",
-  button: "mt-2 bg-orange-600 text-white px-4 py-2 rounded-lg hover:bg-orange-700 focus:outline-none focus:ring-2 focus:ring-orange-500 transition-colors duration-200",
-  cartPanel: "fixed bottom-4 right-4 bg-white shadow-lg rounded-full px-6 py-3 flex items-center gap-4 z-40 transition-all duration-300 ease-in-out",
-  modal: "fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 transition-opacity duration-300",
-  modalBox: "bg-white rounded-xl shadow-2xl p-6 w-[90%] max-w-md transition-all duration-300 ease-in-out",
-  categoryPanel: "w-64 bg-white shadow-md rounded-xl p-4 sticky top-6 hidden md:block transition-all duration-300 ease-in-out",
-  categoryButton: "flex items-center gap-2 text-sm text-gray-700 hover:text-orange-600",
+  button: "bg-orange-600 text-white px-4 py-2 rounded-lg hover:bg-orange-700 focus:outline-none focus:ring-2 focus:ring-orange-500 transition-colors duration-200",
 };
 
 let cartCount = 0;
@@ -18,8 +13,9 @@ let cartItems = [];
 
 const grid = document.getElementById("product-grid");
 const cartCountDisplay = document.getElementById("cart-count");
+const sectionHeader = document.getElementById("section-header");
 
-// 🧭 Toggle category panel on mobile
+// 📱 Toggle filter panel on mobile
 function toggleCategoryPanel() {
   const panel = document.getElementById("category-panel");
   panel.classList.toggle("hidden");
@@ -31,7 +27,7 @@ function createProductCard(product) {
   card.className = classMap.card;
 
   const badge = product.tag
-    ? `<div class="${classMap.badge} static mt-2">${product.tag}</div>`
+    ? `<span class="${classMap.badge}">${product.tag}</span>`
     : "";
 
   card.innerHTML = `
@@ -56,14 +52,18 @@ function createProductCard(product) {
   return card;
 }
 
-
 // 🧺 Update cart display
 function updateCartDisplay() {
   cartCountDisplay.textContent = cartCount;
 }
 
-// 🛒 Render products by category
+// 🛒 Render products by category + update header
 function filterProducts(category) {
+  const title = category === "All" ? "All Products" : category;
+  sectionHeader.querySelector("h2").textContent = title;
+  sectionHeader.querySelector("p").textContent =
+    "Fast delivery available on select items. Limited stock—order now!";
+
   grid.innerHTML = "";
   const filtered =
     category === "All"
