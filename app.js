@@ -18,72 +18,21 @@ function toggleCategoryPanel() {
   document.getElementById("category-panel").classList.toggle("hidden");
 }
 
+function openMobileFilters() {
+  document.getElementById("mobile-filter-sheet").classList.remove("hidden");
+}
+
+function closeMobileFilters() {
+  document.getElementById("mobile-filter-sheet").classList.add("hidden");
+}
+
+function applyMobileFilters() {
+  // Add filter logic here
+  closeMobileFilters();
+}
+
 function getBadgeIcon(tag) {
   const icons = {
     "Limited Stock": "⏳",
     "Flash Deal": "⚡",
-    "Best Seller": "🔥",
-    "New Arrival": "🆕",
-    "Deal of the Day": "💥",
-  };
-  return icons[tag] || "🏷️";
-}
-
-function createProductCard(product) {
-  const card = document.createElement("div");
-  card.className = classMap.card;
-
-  const badge = product.tag
-    ? `<div class="${classMap.badge}">${getBadgeIcon(product.tag)} ${product.tag}</div>`
-    : "";
-
-  card.innerHTML = `
-    <div class="relative">
-      ${badge}
-      <img src="${product.image}" alt="${product.name}" class="${classMap.image}" />
-      <button class="absolute top-2 right-2 text-white bg-black bg-opacity-50 rounded-full p-1 hover:bg-opacity-80 transition">❤️</button>
-    </div>
-    <h3 class="${classMap.title}">${product.name}</h3>
-    <p class="${classMap.price}">₹${product.price}</p>
-    <button class="${classMap.button} mt-2">Add to Cart</button>
-  `;
-
-  const button = card.querySelector("button:last-of-type");
-  button.addEventListener("click", () => {
-    cartCount++;
-    cartItems.push(product);
-    updateCartDisplay();
-  });
-
-  return card;
-}
-
-function updateCartDisplay() {
-  cartCountDisplay.textContent = cartCount;
-}
-
-function filterProducts(category) {
-  sectionHeader.querySelector("h2").textContent = category === "All" ? "All Products" : category;
-  sectionHeader.querySelector("p").textContent = "Fast delivery available on select items. Limited stock—order now!";
-  grid.innerHTML = "";
-  const filtered = category === "All" ? products : products.filter(p => p.category === category);
-  filtered.forEach(p => grid.appendChild(createProductCard(p)));
-}
-
-function openModal() {
-  const modal = document.getElementById("checkout-modal");
-  const itemsList = document.getElementById("checkout-items");
-  const totalDisplay = document.getElementById("checkout-total");
-
-  itemsList.innerHTML = "";
-  let total = 0;
-
-  cartItems.forEach(item => {
-    const li = document.createElement("li");
-    li.className = "flex justify-between";
-    li.innerHTML = `<span>${item.name}</span><span class="text-green-700 font-semibold">₹${item.price}</span>`;
-    itemsList.appendChild(li);
-    total += item.price;
-  });
-
-  totalDisplay.textContent
+    "Best Seller":
