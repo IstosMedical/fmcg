@@ -17,7 +17,7 @@
       <p class="text-sm text-gray-600 mt-1">Fast-moving household deals. Limited stock. Act fast!</p>
     </header>
 
-    <!-- 📱 Mobile Category Toggle -->
+    <!-- 📱 Mobile Filter Toggle -->
     <div class="md:hidden mb-4">
       <button
         onclick="toggleCategoryPanel()"
@@ -100,8 +100,14 @@
         </div>
       </aside>
 
-      <!-- 🧃 Product Grid -->
-      <section id="product-grid" class="flex flex-wrap gap-4"></section>
+      <!-- 🧾 Dynamic Section Header + Product Grid -->
+      <section class="flex-1">
+        <div id="section-header" class="mb-4">
+          <h2 class="text-xl font-bold text-gray-800">All Products</h2>
+          <p class="text-sm text-gray-600">Fast delivery available on select items. Limited stock—order now!</p>
+        </div>
+        <div id="product-grid" class="flex flex-wrap gap-4"></div>
+      </section>
     </main>
 
     <!-- 🧺 Cart Panel -->
