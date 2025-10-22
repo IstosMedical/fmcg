@@ -1,11 +1,10 @@
-// 🎨 Tailwind ClassMap for consistent styling
 const classMap = {
-  card: "min-w-[250px] bg-white rounded-xl shadow-md p-4 hover:shadow-lg hover:scale-[1.03] transition-all duration-300 ease-in-out",
-  badge: "bg-red-500 text-white text-xs font-semibold px-2 py-1 rounded shadow z-10 flex items-center gap-1",
-  image: "w-full h-40 object-cover rounded",
-  title: "mt-2 text-lg font-semibold leading-snug",
-  price: "text-green-700 font-bold text-base",
-  button: "bg-orange-600 text-white px-4 py-2 rounded-lg hover:bg-orange-700 focus:outline-none focus:ring-2 focus:ring-orange-500 transition-colors duration-200",
+  card: "w-full sm:w-[48%] md:w-[31%] lg:w-[23%] bg-white rounded-xl shadow-md p-4 hover:shadow-lg hover:scale-[1.03] transition-all duration-300 ease-in-out",
+  badge: "absolute top-2 left-2 bg-red-500 text-white text-xs font-semibold px-2 py-1 rounded shadow z-10 flex items-center gap-1",
+  image: "w-full h-32 object-cover rounded",
+  title: "mt-2 text-sm font-semibold leading-snug",
+  price: "text-green-700 font-bold text-sm",
+  button: "bg-orange-600 text-white px-3 py-1 rounded-lg hover:bg-orange-700 focus:outline-none focus:ring-2 focus:ring-orange-500 transition-colors duration-200",
 };
 
 let cartCount = 0;
@@ -15,10 +14,8 @@ const grid = document.getElementById("product-grid");
 const cartCountDisplay = document.getElementById("cart-count");
 const sectionHeader = document.getElementById("section-header");
 
-// 📱 Toggle filter panel on mobile
 function toggleCategoryPanel() {
-  const panel = document.getElementById("category-panel");
-  panel.classList.toggle("hidden");
+  document.getElementById("category-panel").classList.toggle("hidden");
 }
 
 function getBadgeIcon(tag) {
@@ -32,26 +29,26 @@ function getBadgeIcon(tag) {
   return icons[tag] || "🏷️";
 }
 
-// 🧩 Create product card
 function createProductCard(product) {
   const card = document.createElement("div");
   card.className = classMap.card;
 
   const badge = product.tag
-    ? `<div class="absolute top-2 left-2 ${classMap.badge}">${product.tag}</div>`
+    ? `<div class="${classMap.badge}">${getBadgeIcon(product.tag)} ${product.tag}</div>`
     : "";
 
   card.innerHTML = `
     <div class="relative">
       ${badge}
       <img src="${product.image}" alt="${product.name}" class="${classMap.image}" />
+      <button class="absolute top-2 right-2 text-white bg-black bg-opacity-50 rounded-full p-1 hover:bg-opacity-80 transition">❤️</button>
     </div>
     <h3 class="${classMap.title}">${product.name}</h3>
     <p class="${classMap.price}">₹${product.price}</p>
     <button class="${classMap.button} mt-2">Add to Cart</button>
   `;
 
-  const button = card.querySelector("button");
+  const button = card.querySelector("button:last-of-type");
   button.addEventListener("click", () => {
     cartCount++;
     cartItems.push(product);
@@ -61,30 +58,18 @@ function createProductCard(product) {
   return card;
 }
 
-// 🧺 Update cart display
 function updateCartDisplay() {
   cartCountDisplay.textContent = cartCount;
 }
 
-// 🛒 Render products by category + update header
 function filterProducts(category) {
-  const title = category === "All" ? "All Products" : category;
-  sectionHeader.querySelector("h2").textContent = title;
-  sectionHeader.querySelector("p").textContent =
-    "Fast delivery available on select items. Limited stock—order now!";
-
+  sectionHeader.querySelector("h2").textContent = category === "All" ? "All Products" : category;
+  sectionHeader.querySelector("p").textContent = "Fast delivery available on select items. Limited stock—order now!";
   grid.innerHTML = "";
-  const filtered =
-    category === "All"
-      ? products
-      : products.filter((p) => p.category === category);
-  filtered.forEach((product) => {
-    const card = createProductCard(product);
-    grid.appendChild(card);
-  });
+  const filtered = category === "All" ? products : products.filter(p => p.category === category);
+  filtered.forEach(p => grid.appendChild(createProductCard(p)));
 }
 
-// 🧾 Open checkout modal
 function openModal() {
   const modal = document.getElementById("checkout-modal");
   const itemsList = document.getElementById("checkout-items");
@@ -93,7 +78,7 @@ function openModal() {
   itemsList.innerHTML = "";
   let total = 0;
 
-  cartItems.forEach((item) => {
+  cartItems.forEach(item => {
     const li = document.createElement("li");
     li.className = "flex justify-between";
     li.innerHTML = `<span>${item.name}</span><span class="text-green-700 font-semibold">₹${item.price}</span>`;
@@ -101,24 +86,4 @@ function openModal() {
     total += item.price;
   });
 
-  totalDisplay.textContent = `₹${total}`;
-  modal.classList.remove("hidden");
-}
-
-// ❌ Close modal
-function closeModal() {
-  document.getElementById("checkout-modal").classList.add("hidden");
-}
-
-// ✅ Confirm order
-function confirmOrder() {
-  alert("Order placed!");
-  cartItems = [];
-  cartCount = 0;
-  updateCartDisplay();
-  closeModal();
-}
-
-// 🚀 Initialize
-filterProducts("All");
-updateCartDisplay();
+  totalDisplay.textContent
