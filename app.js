@@ -1,4 +1,7 @@
+
 let cartCount = 0;
+let cartItems = [];
+
 
 const grid = document.getElementById("product-grid");
 const cart = document.getElementById("cart");
