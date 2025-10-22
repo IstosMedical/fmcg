@@ -1,7 +1,7 @@
 // 🎨 Tailwind ClassMap for consistent styling
 const classMap = {
   card: "min-w-[250px] bg-white rounded-xl shadow-md p-4 hover:shadow-lg hover:scale-[1.03] transition-all duration-300 ease-in-out",
-  badge: "absolute top-2 left-2 bg-red-500 text-white text-xs font-semibold px-2 py-1 rounded shadow",
+  badge: "bg-red-500 text-white text-xs font-semibold px-2 py-1 rounded shadow",
   image: "w-full h-40 object-cover rounded",
   title: "mt-2 text-lg font-semibold leading-snug",
   price: "text-green-700 font-bold text-base",
