@@ -21,6 +21,7 @@ function toggleCategoryPanel() {
   panel.classList.toggle("hidden");
 }
 
+// 🧠 Badge icon logic
 function getBadgeIcon(tag) {
   const icons = {
     "Limited Stock": "⏳",
@@ -28,6 +29,9 @@ function getBadgeIcon(tag) {
     "Best Seller": "🔥",
     "New Arrival": "🆕",
     "Deal of the Day": "💥",
+    "🔥 Fast Moving": "🔥",
+    "⏳ Limited Stock": "⏳",
+    "💥 Deal of the Day": "💥"
   };
   return icons[tag] || "🏷️";
 }
@@ -37,20 +41,19 @@ function createProductCard(product) {
   const card = document.createElement("div");
   card.className = classMap.card;
 
-const badge = product.tag
-  ? `<div class="absolute top-2 left-2 ${classMap.badge}">${getBadgeIcon(product.tag)} ${product.tag}</div>`
-  : "";
-
+  const badge = product.tag
+    ? `<div class="absolute top-2 left-2 ${classMap.badge}">${getBadgeIcon(product.tag)} ${product.tag}</div>`
+    : "";
 
   card.innerHTML = `
-    <div>
+    <div class="relative">
       <img src="${product.image}" alt="${product.name}" class="${classMap.image}" />
+      ${badge}
     </div>
     <h3 class="${classMap.title}">${product.name}</h3>
     <p class="${classMap.price}">₹${product.price}</p>
     <div class="flex items-center justify-between mt-2">
       <button class="${classMap.button}">Add to Cart</button>
-      ${badge}
     </div>
   `;
 
@@ -73,14 +76,13 @@ function updateCartDisplay() {
 function filterProducts(category) {
   const title = category === "All" ? "All Products" : category;
   sectionHeader.querySelector("h2").textContent = title;
-  sectionHeader.querySelector("p").textContent =
-    "Fast delivery available on select items. Limited stock—order now!";
-
+  sectionHeader.querySelector("p").textContent = "Fast delivery available on select items. Limited stock—order now!";
   grid.innerHTML = "";
-  const filtered =
-    category === "All"
-      ? products
-      : products.filter((p) => p.category === category);
+
+  const filtered = category === "All"
+    ? products
+    : products.filter((p) => p.category === category);
+
   filtered.forEach((product) => {
     const card = createProductCard(product);
     grid.appendChild(card);
@@ -122,9 +124,20 @@ function confirmOrder() {
   closeModal();
 }
 
+// 📱 Mobile filter sheet logic
+function openMobileFilters() {
+  document.getElementById("mobile-filter-sheet").classList.remove("hidden");
+}
+
+function closeMobileFilters() {
+  document.getElementById("mobile-filter-sheet").classList.add("hidden");
+}
+
+function applyMobileFilters() {
+  // Placeholder for future filter logic
+  closeMobileFilters();
+}
+
 // 🚀 Initialize
 filterProducts("All");
 updateCartDisplay();
-
-console.log("Loaded products:", products);
-
