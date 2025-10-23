@@ -1,11 +1,11 @@
-// 🎨 Tailwind ClassMap for consistent styling
+// 🎨 Tailwind ClassMap
 const classMap = {
-  card: "min-w-[250px] bg-white rounded-xl shadow-md p-4 hover:shadow-lg hover:scale-[1.03] transition-all duration-300 ease-in-out",
-  badge: "bg-red-500 text-white text-xs font-semibold px-2 py-1 rounded shadow z-10 flex items-center gap-1",
-  image: "w-full h-40 object-cover rounded",
-  title: "mt-2 text-lg font-semibold leading-snug",
-  price: "text-green-700 font-bold text-base",
-  button: "bg-orange-600 text-white px-4 py-2 rounded-lg hover:bg-orange-700 focus:outline-none focus:ring-2 focus:ring-orange-500 transition-colors duration-200",
+  card: "w-full sm:w-[48%] md:w-[31%] lg:w-[23%] bg-white rounded-xl shadow-md p-4 hover:shadow-lg hover:scale-[1.03] transition-all duration-300 ease-in-out",
+  badge: "absolute top-2 left-2 bg-red-500 text-white text-xs font-semibold px-2 py-1 rounded shadow z-10 flex items-center gap-1",
+  image: "w-full h-32 object-cover rounded",
+  title: "mt-2 text-sm font-semibold leading-snug",
+  price: "text-green-700 font-bold text-sm",
+  button: "bg-orange-600 text-white px-3 py-1 rounded-lg hover:bg-orange-700 focus:outline-none focus:ring-2 focus:ring-orange-500 transition-colors duration-200",
 };
 
 let cartCount = 0;
@@ -15,13 +15,7 @@ const grid = document.getElementById("product-grid");
 const cartCountDisplay = document.getElementById("cart-count");
 const sectionHeader = document.getElementById("section-header");
 
-// 📱 Toggle filter panel on mobile
-function toggleCategoryPanel() {
-  const panel = document.getElementById("category-panel");
-  panel.classList.toggle("hidden");
-}
-
-// 🧠 Badge icon logic
+// 🧠 Icon logic for urgency badges
 function getBadgeIcon(tag) {
   const icons = {
     "Limited Stock": "⏳",
@@ -42,22 +36,21 @@ function createProductCard(product) {
   card.className = classMap.card;
 
   const badge = product.tag
-    ? `<div class="absolute top-2 left-2 ${classMap.badge}">${getBadgeIcon(product.tag)} ${product.tag}</div>`
+    ? `<div class="${classMap.badge}">${getBadgeIcon(product.tag)} ${product.tag}</div>`
     : "";
 
   card.innerHTML = `
     <div class="relative">
-      <img src="${product.image}" alt="${product.name}" class="${classMap.image}" />
       ${badge}
+      <img src="${product.image}" alt="${product.name}" class="${classMap.image}" />
+      <button class="absolute top-2 right-2 text-white bg-black bg-opacity-50 rounded-full p-1 hover:bg-opacity-80 transition">❤️</button>
     </div>
     <h3 class="${classMap.title}">${product.name}</h3>
     <p class="${classMap.price}">₹${product.price}</p>
-    <div class="flex items-center justify-between mt-2">
-      <button class="${classMap.button}">Add to Cart</button>
-    </div>
+    <button class="${classMap.button} mt-2">Add to Cart</button>
   `;
 
-  const button = card.querySelector("button");
+  const button = card.querySelector("button:last-of-type");
   button.addEventListener("click", () => {
     cartCount++;
     cartItems.push(product);
@@ -72,18 +65,17 @@ function updateCartDisplay() {
   cartCountDisplay.textContent = cartCount;
 }
 
-// 🛒 Render products by category + update header
+// 🛒 Filter products by category
 function filterProducts(category) {
-  const title = category === "All" ? "All Products" : category;
-  sectionHeader.querySelector("h2").textContent = title;
+  sectionHeader.querySelector("h2").textContent = category === "All" ? "All Products" : category;
   sectionHeader.querySelector("p").textContent = "Fast delivery available on select items. Limited stock—order now!";
   grid.innerHTML = "";
 
   const filtered = category === "All"
     ? products
-    : products.filter((p) => p.category === category);
+    : products.filter(p => p.category === category);
 
-  filtered.forEach((product) => {
+  filtered.forEach(product => {
     const card = createProductCard(product);
     grid.appendChild(card);
   });
@@ -98,7 +90,7 @@ function openModal() {
   itemsList.innerHTML = "";
   let total = 0;
 
-  cartItems.forEach((item) => {
+  cartItems.forEach(item => {
     const li = document.createElement("li");
     li.className = "flex justify-between";
     li.innerHTML = `<span>${item.name}</span><span class="text-green-700 font-semibold">₹${item.price}</span>`;
@@ -134,7 +126,7 @@ function closeMobileFilters() {
 }
 
 function applyMobileFilters() {
-  // Placeholder for future filter logic
+  // Placeholder for actual filter logic
   closeMobileFilters();
 }
 
