@@ -125,3 +125,6 @@ function confirmOrder() {
 // 🚀 Initialize
 filterProducts("All");
 updateCartDisplay();
+
+console.log("Loaded products:", products);
+
