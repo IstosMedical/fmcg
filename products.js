@@ -29,7 +29,7 @@ const products = [
     price: 189,
     image: "images/toothpaste.jpg",
     tag: "🔥 Fast Moving",
-    category: "Hygiene"
+    category: "Cleaning"
   },
   {
     id: 5,
@@ -37,7 +37,7 @@ const products = [
     price: 139,
     image: "images/dishsoap.jpg",
     tag: "⏳ Limited Stock",
-    category: "Hygiene"
+    category: "Cleaning"
   },
   {
     id: 6,
@@ -45,7 +45,7 @@ const products = [
     price: 319,
     image: "images/shampoo.jpg",
     tag: "💥 Deal of the Day",
-    category: "Hygiene"
+    category: "Cleaning"
   },
   {
     id: 7,
@@ -53,7 +53,7 @@ const products = [
     price: 209,
     image: "images/toothpaste.jpg",
     tag: "🔥 Fast Moving",
-    category: "Hygiene"
+    category: "Drinks"
   },
   {
     id: 8,
@@ -61,7 +61,7 @@ const products = [
     price: 159,
     image: "images/dishsoap.jpg",
     tag: "⏳ Limited Stock",
-    category: "Hygiene"
+    category: "Drinks"
   },
   {
     id: 9,
@@ -69,6 +69,6 @@ const products = [
     price: 289,
     image: "images/shampoo.jpg",
     tag: "💥 Deal of the Day",
-    category: "Hygiene"
+    category: "Drinks"
   }
 ];
