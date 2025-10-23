@@ -2,34 +2,34 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Bulk FMCG Store</title>
+  <title>Bento</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <script src="https://cdn.tailwindcss.com"></script>
   <script defer src="products.js"></script>
   <script defer src="app.js"></script>
 </head>
-<body class="p-4 bg-gray-50 font-sans">
+<body class="p-4 bg-white font-sans">
 
   <!-- 🛍️ Header -->
   <header class="text-center mb-4">
     <h1 class="text-3xl md:text-4xl font-bold">🛒 Bulk Buy Essentials</h1>
-    <p class="text-sm text-gray-600">Fast-moving household deals. Limited stock. Act fast!</p>
+    <p class="text-sm text-gray-600">Fast-moving household deals... Act fast!</p>
   </header>
 
-  <!-- 🖼️ Mobile Category Images -->
+  <!-- 📱 Mobile Category Images -->
   <div class="md:hidden mb-4 overflow-x-auto whitespace-nowrap px-1">
     <div class="flex gap-4">
       <div class="text-center w-20 flex-shrink-0">
-        <img src="images/sweets.png" class="w-full rounded-lg" />
-        <p class="text-xs mt-1">Sweets</p>
+        <img src="images/hygiene.png" class="w-full rounded-lg" />
+        <p class="text-xs mt-1">hygiene</p>
       </div>
       <div class="text-center w-20 flex-shrink-0">
-        <img src="images/biryani.png" class="w-full rounded-lg" />
-        <p class="text-xs mt-1">Biryani</p>
+        <img src="images/cleaning.png" class="w-full rounded-lg" />
+        <p class="text-xs mt-1">cleaning</p>
       </div>
       <div class="text-center w-20 flex-shrink-0">
-        <img src="images/pizza.png" class="w-full rounded-lg" />
-        <p class="text-xs mt-1">Pizza</p>
+        <img src="images/drinks.png" class="w-full rounded-lg" />
+        <p class="text-xs mt-1">drinks</p>
       </div>
     </div>
   </div>
@@ -48,7 +48,7 @@
       <li>|</li>
       <li><button onclick="filterProducts('Hygiene')" class="hover:text-orange-600">Hygiene</button></li>
       <li>|</li>
-      <li><button onclick="filterProducts('Food')" class="hover:text-orange-600">Food & Snacks</button></li>
+      <li><button onclick="filterProducts('Cleaning')" class="hover:text-orange-600">Cleaning</button></li>
       <li>|</li>
       <li><button onclick="filterProducts('Drinks')" class="hover:text-orange-600">Drinks</button></li>
     </ul>
@@ -68,6 +68,8 @@
         <h2 class="text-xl font-bold text-gray-800">All Products</h2>
         <p class="text-sm text-gray-600">Fast delivery available on select items. Limited stock—order now!</p>
       </div>
+
+      <!-- 📦 Product Grid -->
       <div id="product-grid" class="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4"></div>
     </section>
   </main>
@@ -94,7 +96,7 @@
     </div>
   </div>
 
-  <!-- 📦 Mobile Filter Sheet -->
+  <!-- 📱 Mobile Filter Sheet -->
   <div id="mobile-filter-sheet" class="fixed bottom-0 left-0 right-0 bg-white shadow-xl rounded-t-xl p-4 z-50 hidden">
     <h2 class="text-lg font-bold mb-4">Filter Products</h2>
     <div class="mb-4">
